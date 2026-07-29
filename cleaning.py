@@ -70,6 +70,43 @@ def text_columns(df: pd.DataFrame) -> list:
     return [c for c in df.columns if pd.api.types.is_string_dtype(df[c])]
 
 
+def numeric_columns(df: pd.DataFrame) -> list:
+    """Return column names that hold numeric data."""
+    return [c for c in df.columns if pd.api.types.is_numeric_dtype(df[c])]
+
+
+def top_category_by_sum(df: pd.DataFrame, category_col: str, numeric_col: str) -> dict:
+    """Find which category has the highest running total of a numeric column."""
+    totals = df.groupby(category_col)[numeric_col].sum().sort_values(ascending=False)
+    return {
+        "top_category": totals.index[0],
+        "top_total": float(totals.iloc[0]),
+        "average_total": float(totals.mean()),
+        "breakdown": totals,
+    }
+
+
+def average_value(df: pd.DataFrame, numeric_col: str) -> dict:
+    """Compute the average of a numeric column alongside its min and max."""
+    series = df[numeric_col].dropna()
+    return {
+        "mean": float(series.mean()),
+        "min": float(series.min()),
+        "max": float(series.max()),
+    }
+
+
+def extreme_value(df: pd.DataFrame, numeric_col: str, which: str = "highest") -> dict:
+    """Find the single highest or lowest value in a numeric column, and its full row."""
+    series = df[numeric_col].dropna()
+    idx = series.idxmax() if which == "highest" else series.idxmin()
+    return {
+        "value": float(series.loc[idx]),
+        "average": float(series.mean()),
+        "row": df.loc[idx].drop(labels=[numeric_col]).to_dict(),
+    }
+
+
 def fix_dtype(df: pd.DataFrame, column: str, new_type: str) -> pd.DataFrame:
     """Convert a column to numeric, datetime, or text. Bad values become blank."""
     df = df.copy()

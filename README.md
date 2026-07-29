@@ -1,4 +1,4 @@
-# 🩺 Data Doctor
+# 🩺 TidyBench
 
 ![Python](https://img.shields.io/badge/python-3.9%2B-blue)
 ![Streamlit](https://img.shields.io/badge/streamlit-app-FF4B4B)
@@ -15,6 +15,7 @@ Real-world spreadsheets are rarely clean — duplicate rows, half-filled columns
 - **Diagnose** — rows, columns, missing values, duplicates, and dtypes at a glance
 - **Treat** — fix missing values (mean, median, mode, custom, or drop), remove duplicates, strip whitespace, and convert column types, all from the UI
 - **Report** — a before/after summary of everything that changed, downloadable as markdown alongside the cleaned CSV
+- **Quick Insights** — once the data's cleaned, pick a preset question (top category by total, average, highest/lowest value) and get a plain-English answer, with an optional deeper breakdown
 
 ## Demo
 

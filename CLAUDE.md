@@ -1,11 +1,11 @@
-# Data Doctor
+# TidyBench
 
 A Streamlit app: upload a messy CSV, diagnose what's wrong with it, fix it, download a clean file + a report.
 
 ## Architecture
 
-- `cleaning.py` — all pandas/numpy logic. No Streamlit import. Every function takes a DataFrame (or Series) and returns one; no side effects, no printing. This is deliberate so it's testable on its own.
-- `app.py` — Streamlit UI only. Calls into `cleaning.py`, never duplicates its logic.
+- `cleaning.py` — all pandas/numpy logic. No Streamlit import. Every function takes a DataFrame (or Series) and returns one; no side effects, no printing. This is deliberate so it's testable on its own. Includes the Quick Insights functions (`numeric_columns`, `top_category_by_sum`, `average_value`, `extreme_value`) alongside the cleaning functions — same pattern, plain data in and out.
+- `app.py` — Streamlit UI only. Calls into `cleaning.py`, never duplicates its logic. The Quick Insights section builds preset question strings from whatever columns are in the uploaded CSV, then dispatches to the `cleaning.py` functions above.
 - `test_cleaning.py` — plain asserts against `sample_data/messy_sales.csv`. Run it after touching `cleaning.py`: `python test_cleaning.py`.
 
 When adding a feature, keep this split: new data logic goes in `cleaning.py` as a plain function, new UI goes in `app.py`.
