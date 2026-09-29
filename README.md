@@ -67,7 +67,7 @@ TidyBench/
 
 ## About
 
-An early project (July 2026) by [Rushil A. Bajpai](https://github.com/rushilcodes23), built with Claude Code. The rules it worked to are in [`CLAUDE.md`](CLAUDE.md). I now run [Ru Visibility](https://ruvisibility.com), an SEO and AI visibility (GEO) consultancy.
+An early project (July 2026) by [Rushil A. Bajpai](https://github.com/rushilcodes23). I now run [Ru Visibility](https://ruvisibility.com), an SEO and AI visibility (GEO) consultancy.
 
 ## License
 
